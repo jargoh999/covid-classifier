@@ -41,6 +41,7 @@ jobs:
           echo "${{ secrets.AWS_PRIVATE_KEY }}" > private_key.pem
           chmod 600 private_key.pem
           ssh -o StrictHostKeyChecking=no -i private_key.pem ubuntu@${{ secrets.AWS_HOST }} << 'EOF'
+            sudo chmod 666 /var/run/docker.sock
             docker pull jargoh999/project_mgt:latest
             docker stop project_mgt || true
             docker rm project_mgt || true
