@@ -42,15 +42,15 @@ jobs:
           chmod 600 private_key.pem
           ssh -o StrictHostKeyChecking=no -i private_key.pem ubuntu@${{ secrets.AWS_HOST }} << 'EOF'
             # Cleanup existing containers and images
-            docker container prune -f
-            docker image prune -f
+            sudo docker container prune -f
+            sudo docker image prune -f
             
             # Remove specific container if it exists
-            docker rm -f project_mgt || true
+            sudo docker rm -f project_mgt || true
             
             # Pull the latest image
-            docker pull jargoh999/project_mgt:latest
+            sudo docker pull jargoh999/project_mgt:latest
             
             # Run the new container
-            docker run -d --name project_mgt -p 8000:8000 jargoh999/project_mgt:latest
+            sudo docker run -d --name project_mgt -p 8000:8000 jargoh999/project_mgt:latest
           EOF
