@@ -30,7 +30,7 @@ jobs:
       - name: Build Docker image
         run: docker build -t jargoh999/project_mgt:latest .
 
-      - name: Push Docker image to Docker Hub
+      - name: Push Docker image to  Hub
         run: docker push jargoh999/project_mgt:latest
 
       - name: Deploy to AWS EC2
